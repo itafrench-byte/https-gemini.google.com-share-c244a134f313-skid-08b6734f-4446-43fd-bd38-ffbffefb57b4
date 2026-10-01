@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>금손 수제만두 & 찹쌀도너츠 | 매일 아침 직접 빻은 찹쌀로 만드는 1,000원의 행복</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Noto Sans KR & Black Han Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Noto Sans KR', 'sans-serif'],
+                        title: ['Black Han Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: '#D32F2F',      /* Warm Artisanal Red */
+                        brandDark: '#B71C1C',
+                        amberGold: '#F57C00',  /* Golden fried donut orange-gold */
+                        amberLight: '#FFF3E0',
+                        warmBg: '#FAFAFA',
+                        charcoal: '#212121'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; color: #212121; background-color: #FAFAFA; }
+        .font-title { font-family: 'Black Han Sans', sans-serif; }
+        html { scroll-behavior: smooth; }
+
+        /* Custom Badges & Effects */
+        .price-badge {
+            background: linear-gradient(135deg, #FF6F00 0%, #D32F2F 100%);
+        }
+        .hero-gradient {
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)), url('https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #F57C00; border-radius: 4px; }
+
+        /* Animations */
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .pulse-btn {
+            animation: pulseGlow 2.5s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen relative">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-brand text-white text-xs sm:text-sm py-2 px-4 text-center font-bold tracking-wide flex justify-center items-center gap-2">
+        <span class="bg-yellow-400 text-brand px-2 py-0.5 rounded-full text-xs font-black">매일 아침 생산</span>
+        <span>찹쌀을 직접 불리고 빻아서 만드는 착한 가격 1,000원의 수제 손맛!</span>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-orange-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-12 h-12 bg-amberGold text-white rounded-2xl flex items-center justify-center text-2xl shadow-md group-hover:rotate-6 transition-transform">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <div>
+                        <span class="font-title text-2xl md:text-3xl tracking-wide text-brand">금손 수제만두</span>
+                        <p class="text-xs text-amberGold font-bold tracking-wider">& 찹쌀도너츠·꽈배기</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center space-x-8 font-medium text-gray-700">
+                    <a href="#about" class="hover:text-brand transition-colors">가게 고집</a>
+                    <a href="#master" class="hover:text-brand transition-colors">20년 장인 소개</a>
+                    <a href="#menu" class="hover:text-brand transition-colors">대표 메뉴</a>
+                    <a href="#process" class="hover:text-brand transition-colors">정성 과정</a>
+                    <a href="#calculator" class="hover:text-brand transition-colors">포장 계산기</a>
+                    <a href="#location" class="hover:text-brand transition-colors">오시는 길</a>
+                </nav>
+
+                <!-- Phone CTA Button -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <a href="tel:010-0000-0000" class="bg-brand hover:bg-brandDark text-white px-5 py-2.5 rounded-full font-bold shadow-md hover:shadow-lg transition-all flex items-center text-sm">
+                        <i class="fa-solid fa-phone mr-2 text-yellow-300"></i> 전화/단체주문
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-gray-700 hover:text-brand focus:outline-none p-2">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-gray-800 font-medium hover:text-brand">가게 고집</a>
+            <a href="#master" onclick="toggleMobileMenu()" class="block py-2 text-gray-800 font-medium hover:text-brand">20년 장인 소개</a>
+            <a href="#menu" onclick="toggleMobileMenu()" class="block py-2 text-gray-800 font-medium hover:text-brand">대표 메뉴</a>
+            <a href="#process" onclick="toggleMobileMenu()" class="block py-2 text-gray-800 font-medium hover:text-brand">정성 과정</a>
+            <a href="#calculator" onclick="toggleMobileMenu()" class="block py-2 text-gray-800 font-medium hover:text-brand">단체/포장 계산기</a>
+            <a href="#location" onclick="toggleMobileMenu()" class="block py-2 text-gray-800 font-medium hover:text-brand">오시는 길</a>
+            <a href="tel:010-0000-0000" class="block bg-brand text-white text-center py-3 rounded-xl font-bold mt-2">
+                <i class="fa-solid fa-phone mr-2"></i> 전화로 주문/문의하기
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient min-h-[75vh] flex items-center justify-center text-white relative px-4 py-12">
+        <div class="max-w-4xl mx-auto text-center space-y-5">
+            <!-- Top Tag -->
+            <div class="inline-flex items-center gap-2 bg-yellow-400 text-charcoal px-4 py-1.5 rounded-full text-sm font-black shadow-lg">
+                <i class="fa-solid fa-star text-brand"></i>
+                <span>100% 수제 손맛 · 착한가격 1,000원</span>
+            </div>
+
+            <!-- Main Title (Simplified & Punchy) -->
+            <h1 class="font-title text-4xl sm:text-6xl tracking-wide leading-tight drop-shadow-lg">
+                직접 빻은 찹쌀 <span class="text-yellow-400">동그란 찹쌀도너츠</span><br>
+                정성 빚은 <span class="text-amberGold">수제만두 단돈 1,000원!</span>
+            </h1>
+
+            <p class="text-base sm:text-xl text-gray-200 font-light max-w-xl mx-auto">
+                가공가루 NO! 매일 아침 찹쌀을 불리고 직접 빻아서 반죽합니다.
+            </p>
+
+            <!-- Key Feature Highlights Banner -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 pt-2 max-w-2xl mx-auto text-center">
+                <div class="bg-black/50 backdrop-blur-md p-3 rounded-2xl border border-white/20">
+                    <span class="block text-yellow-400 font-bold text-lg sm:text-xl">100%</span>
+                    <span class="text-xs text-gray-300">직접 빻은 찹쌀</span>
+                </div>
+                <div class="bg-black/50 backdrop-blur-md p-3 rounded-2xl border border-white/20">
+                    <span class="block text-yellow-400 font-bold text-lg sm:text-xl">1,000원</span>
+                    <span class="text-xs text-gray-300">부담없는 가격</span>
+                </div>
+                <div class="bg-black/50 backdrop-blur-md p-3 rounded-2xl border border-white/20">
+                    <span class="block text-yellow-400 font-bold text-lg sm:text-xl">수제</span>
+                    <span class="text-xs text-gray-300">매일 빚는 손만두</span>
+                </div>
+                <div class="bg-black/50 backdrop-blur-md p-3 rounded-2xl border border-white/20">
+                    <span class="block text-yellow-400 font-bold text-lg sm:text-xl">당일생산</span>
+                    <span class="text-xs text-gray-300">갓 튀겨낸 바삭함</span>
+                </div>
+            </div>
+
+            <!-- Call to Actions -->
+            <div class="pt-4 flex flex-col sm:flex-row justify-center gap-3">
+                <a href="#calculator" class="pulse-btn bg-amberGold hover:bg-yellow-600 text-white font-bold px-7 py-3.5 rounded-full text-base shadow-xl transition-all flex items-center justify-center">
+                    <i class="fa-solid fa-calculator mr-2"></i> 포장/단체 주문 미리 계산하기
+                </a>
+                <a href="#menu" class="bg-white/20 hover:bg-white/30 backdrop-blur-md text-white border border-white/40 font-bold px-7 py-3.5 rounded-full text-base transition-all flex items-center justify-center">
+                    <i class="fa-solid fa-cookie-bite mr-2"></i> 메뉴 보기
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Value / Reasons Section (Shorter text) -->
+    <section id="about" class="py-16 bg-amberLight/40">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12">
+                <span class="text-brand font-bold text-xs tracking-widest uppercase">Secret of Taste</span>
+                <h2 class="font-title text-3xl text-charcoal mt-1">금손 수제만두의 3가지 고집</h2>
+                <div class="w-12 h-1 bg-brand mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Point 1 -->
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-orange-100 hover:shadow-md transition-all">
+                    <div class="w-12 h-12 bg-amberGold/10 rounded-xl flex items-center justify-center text-amberGold text-2xl mb-4">
+                        <i class="fa-solid fa-wheat-awn"></i>
+                    </div>
+                    <span class="text-xs font-bold text-brand bg-brand/10 px-2.5 py-1 rounded-full inline-block mb-2">원재료 고집</span>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">100% 직접 불려 빻은 찹쌀</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed">
+                        시중 가루를 쓰지 않습니다. 매일 찹쌀을 불려 방아로 직접 빻아 겉은 바삭, 속은 극상의 쫄깃함을 만듭니다.
+                    </p>
+                </div>
+
+                <!-- Point 2 -->
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-orange-100 hover:shadow-md transition-all">
+                    <div class="w-12 h-12 bg-brand/10 rounded-xl flex items-center justify-center text-brand text-2xl mb-4">
+                        <i class="fa-solid fa-hands-holding"></i>
+                    </div>
+                    <span class="text-xs font-bold text-amberGold bg-amberGold/10 px-2.5 py-1 rounded-full inline-block mb-2">손맛 고집</span>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">속이 꽉 찬 100% 수제 만두</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed">
+                        국내산 돼지고기와 신선한 야채로 소를 만들고 하나하나 정성껏 빚어 속이 알차고 육즙이 가득합니다.
+                    </p>
+                </div>
+
+                <!-- Point 3 -->
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-orange-100 hover:shadow-md transition-all">
+                    <div class="w-12 h-12 bg-yellow-500/10 rounded-xl flex items-center justify-center text-yellow-600 text-2xl mb-4">
+                        <i class="fa-solid fa-coins"></i>
+                    </div>
+                    <span class="text-xs font-bold text-green-700 bg-green-100 px-2.5 py-1 rounded-full inline-block mb-2">착한 가격</span>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">개당 1,000원의 행복</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed">
+                        부담 없이 언제든 즐길 수 있도록 개당 천 원으로 푸짐하고 온기 가득한 맛을 전합니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 20-Year Master Artisan Profile Section -->
+    <section id="master" class="py-20 bg-white relative overflow-hidden border-y border-amber-100">
+        <!-- Subtle background pattern decorative blur -->
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-red-100/50 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-amber-100/60 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+            <div class="text-center mb-14">
+                <span class="bg-brand/10 text-brand font-bold text-xs px-3.5 py-1.5 rounded-full tracking-widest uppercase inline-flex items-center gap-1.5">
+                    <i class="fa-solid fa-award"></i> 20 Years Craftsmanship
+                </span>
+                <h2 class="font-title text-3xl sm:text-4xl text-charcoal mt-3">20년 외길, 손끝으로 전하는 진심</h2>
+                <p class="text-gray-500 text-xs sm:text-sm mt-2 max-w-xl mx-auto">
+                    기계는 결코 흉내 낼 수 없는 손만두 장인의 정성과 노하우를 담았습니다
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                
+                <!-- Left Column: Master Photo & Badge Overlay -->
+                <div class="lg:col-span-5">
+                    <div class="relative max-w-md mx-auto">
+                        <!-- Outer Frame Glow -->
+                        <div class="absolute -inset-2 bg-gradient-to-r from-brand to-amberGold rounded-3xl blur opacity-20"></div>
+                        
+                        <!-- Main Master Image Card -->
+                        <div class="relative bg-amber-50 rounded-3xl overflow-hidden shadow-2xl border-2 border-orange-200">
+                            <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=800&q=80" 
+                                 alt="20년 수제만두 장인 김금손 대표" 
+                                 class="w-full h-96 sm:h-[420px] object-cover object-top hover:scale-105 transition-transform duration-700">
+                            
+                            <!-- Dark Gradient Mask for Text -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+
+                            <!-- Photo Overlay Content -->
+                            <div class="absolute bottom-0 inset-x-0 p-6 text-white">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="bg-yellow-400 text-charcoal text-xs font-black px-2.5 py-0.5 rounded-md shadow">
+                                        대표 장인
+                                    </span>
+                                    <span class="text-yellow-300 text-xs font-bold">
+                                        <i class="fa-solid fa-certificate mr-1"></i> 수제만두·꽈배기 명장
+                                    </span>
+                                </div>
+                                <h3 class="font-title text-2xl tracking-wide">김 금 손 <span class="text-base font-normal text-gray-200">대표</span></h3>
+                                <p class="text-gray-300 text-xs mt-1 font-light">"매일 아침 새벽 5시, 손님이 맛볼 첫 만두를 빚으며 하루를 엽니다."</p>
+                            </div>
+                        </div>
+
+                        <!-- Floating Badge: 20 Years Experience Stamp -->
+                        <div class="absolute -top-5 -right-5 bg-brand text-white p-4 rounded-2xl shadow-xl flex items-center space-x-3 border-2 border-white rotate-3">
+                            <div class="text-center">
+                                <span class="block font-title text-3xl leading-none text-yellow-300">20년</span>
+                                <span class="text-[10px] font-bold text-gray-100 tracking-tighter">손만두 외길</span>
+                            </div>
+                        </div>
+
+                        <!-- Floating Seal: Cumulative 1M+ Dumplings -->
+                        <div class="absolute -bottom-5 -left-4 bg-white/95 backdrop-blur-md p-3.5 rounded-2xl shadow-lg border border-orange-200 flex items-center gap-3">
+                            <div class="w-10 h-10 bg-amberGold/20 rounded-xl flex items-center justify-center text-amberGold text-xl shrink-0">
+                                <i class="fa-solid fa-utensils"></i>
+                            </div>
+                            <div>
+                                <span class="block text-xs text-gray-500 font-bold">누적 손만두 생산</span>
+                                <span class="font-title text-brand text-lg">100만 개 이상</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Story, Quote, Key Stats & Career Timeline -->
+                <div class="lg:col-span-7 space-y-6">
+                    
+                    <!-- Master's Philosophy Quote Box -->
+                    <div class="bg-amberLight/60 p-6 rounded-3xl border border-orange-200 relative">
+                        <i class="fa-solid fa-quote-left text-3xl text-amberGold/30 absolute top-4 left-4"></i>
+                        <div class="relative z-10 pl-4">
+                            <h4 class="font-bold text-gray-900 text-base mb-2">
+                                "만두 피 0.8mm의 두께, 만두소의 황금비율 7:3"
+                            </h4>
+                            <p class="text-gray-700 text-xs sm:text-sm leading-relaxed font-normal">
+                                기계로 찍어내면 수천 개도 쉽게 만듭니다. 하지만 사람이 빚은 손만두 특유의 쫄깃한 식감과 촉촉하게 터지는 육즙은 기계가 절대 따라올 수 없습니다. 
+                                20년 동안 매일 아침 방아로 찹쌀을 직접 빻고, 한 알 한 알 제 손으로 빚어내는 이유입니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 4-Column Key Master Stats Grid -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100 text-center">
+                            <span class="block font-title text-2xl text-brand">20년</span>
+                            <span class="text-[11px] text-gray-500 font-medium">수제 전문 경력</span>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100 text-center">
+                            <span class="block font-title text-2xl text-amberGold">100만+</span>
+                            <span class="text-[11px] text-gray-500 font-medium">손으로 빚은 만두</span>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100 text-center">
+                            <span class="block font-title text-2xl text-gray-800">100%</span>
+                            <span class="text-[11px] text-gray-500 font-medium">국내산 돼지고기</span>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100 text-center">
+                            <span class="block font-title text-2xl text-yellow-600">4.9 / 5.0</span>
+                            <span class="text-[11px] text-gray-500 font-medium">단골 재방문 평점</span>
+                        </div>
+                    </div>
+
+                    <!-- Career Timeline -->
+                    <div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm space-y-4">
+                        <h4 class="font-bold text-gray-900 text-sm flex items-center gap-2 border-b border-gray-100 pb-3">
+                            <i class="fa-solid fa-timeline text-brand"></i> 장인 약력 및 경력
+                        </h4>
+
+                        <div class="space-y-3 text-xs">
+                            <div class="flex items-start gap-3">
+                                <span class="bg-brand text-white font-bold px-2 py-0.5 rounded text-[10px] shrink-0 mt-0.5">2006년 ~</span>
+                                <p class="text-gray-700">전통 수제만두 및 찹쌀도너츠 제과·반죽 기술 입문 & 연구 시작</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="bg-amberGold text-white font-bold px-2 py-0.5 rounded text-[10px] shrink-0 mt-0.5">2012년 ~</span>
+                                <p class="text-gray-700">유명 전통시장 수제만두 전문점 총괄 주방장 (매일 1,000개 조기 완판)</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="bg-gray-800 text-white font-bold px-2 py-0.5 rounded text-[10px] shrink-0 mt-0.5">2018년 ~</span>
+                                <p class="text-gray-700">TV 방송 (생생정보통, 동네 한 바퀴) 수제 손만두 및 찹쌀 꽈배기 명인 소개</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="bg-green-700 text-white font-bold px-2 py-0.5 rounded text-[10px] shrink-0 mt-0.5">현재</span>
+                                <p class="text-gray-800 font-bold">'금손 수제만두 & 찹쌀도너츠' 대표 / '매일 아침 당일 생산' 원칙 엄수</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section (Updated round donut images and streamlined copy) -->
+    <section id="menu" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+                <div>
+                    <span class="text-brand font-bold text-xs tracking-widest uppercase">Delicious Menu</span>
+                    <h2 class="font-title text-3xl text-charcoal mt-1">대표 수제 메뉴</h2>
+                </div>
+
+                <!-- Menu Tabs Filter -->
+                <div class="flex flex-wrap gap-2 mt-4 md:mt-0" id="menu-tabs">
+                    <button onclick="filterMenu('all')" class="tab-btn active bg-brand text-white font-medium px-4 py-2 rounded-full text-xs transition-all shadow-sm">전체보기</button>
+                    <button onclick="filterMenu('donut')" class="tab-btn bg-white hover:bg-gray-100 text-gray-700 font-medium px-4 py-2 rounded-full text-xs transition-all shadow-sm border border-gray-200">찹쌀도너츠 & 꽈배기</button>
+                    <button onclick="filterMenu('mandoo')" class="tab-btn bg-white hover:bg-gray-100 text-gray-700 font-medium px-4 py-2 rounded-full text-xs transition-all shadow-sm border border-gray-200">수제 만두</button>
+                </div>
+            </div>
+
+            <!-- Menu Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="menu-grid">
+
+                <!-- Item 1: 찹쌀 꽈배기 -->
+                <div class="menu-item donut bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 overflow-hidden bg-amber-100">
+                            <img src="https://images.unsplash.com/photo-1626094309830-abbb0c99da4a?auto=format&fit=crop&w=800&q=80" alt="찹쌀 꽈배기" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 price-badge text-white font-title text-base px-3 py-1 rounded-full shadow-md">
+                                1,000원
+                            </span>
+                            <span class="absolute top-3 right-3 bg-yellow-400 text-charcoal font-bold text-xs px-2 py-0.5 rounded-full shadow">
+                                ★ 인기 꽈배기
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex justify-between items-center mb-1.5">
+                                <h3 class="font-bold text-lg text-gray-900">수제 찹쌀 꽈배기</h3>
+                                <span class="text-xs text-amberGold bg-orange-50 font-bold px-2 py-0.5 rounded">1개</span>
+                            </div>
+                            <p class="text-gray-600 text-xs leading-relaxed mb-3">
+                                결대로 찢어지는 겉바속촉! 직접 빻아 반죽한 쫄깃한 시그니처 꽈배기.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5 pt-0">
+                        <button onclick="addToCalc('찹쌀 꽈배기', 1000)" class="w-full bg-amberGold hover:bg-yellow-600 text-white font-bold py-2 rounded-xl transition-colors flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-plus mr-1.5"></i> 계산기에 담기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 2: 동그란 찹쌀 팥도너츠 -->
+                <div class="menu-item donut bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 overflow-hidden bg-amber-100">
+                            <!-- Round donut image URL -->
+                            <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80" alt="동그란 찹쌀 팥도너츠" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 price-badge text-white font-title text-base px-3 py-1 rounded-full shadow-md">
+                                1,000원
+                            </span>
+                            <span class="absolute top-3 right-3 bg-amberGold text-white font-bold text-xs px-2 py-0.5 rounded-full shadow">
+                                동그란 도넛
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex justify-between items-center mb-1.5">
+                                <h3 class="font-bold text-lg text-gray-900">동그란 찹쌀 팥도너츠</h3>
+                                <span class="text-xs text-amberGold bg-orange-50 font-bold px-2 py-0.5 rounded">1개</span>
+                            </div>
+                            <p class="text-gray-600 text-xs leading-relaxed mb-3">
+                                동글동글 쫀득한 찹쌀 피 속에 고소한 달콤 팥앙금이 듬뿍 들어간 동그란 도너츠!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5 pt-0">
+                        <button onclick="addToCalc('찹쌀 팥도너츠', 1000)" class="w-full bg-amberGold hover:bg-yellow-600 text-white font-bold py-2 rounded-xl transition-colors flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-plus mr-1.5"></i> 계산기에 담기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 3: 동그란 찹쌀 찰도너츠 (볼 도넛) -->
+                <div class="menu-item donut bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 overflow-hidden bg-amber-100">
+                            <!-- Round fried dough ball image -->
+                            <img src="https://images.unsplash.com/photo-1579372786545-d24232daf58c?auto=format&fit=crop&w=800&q=80" alt="동그란 찹쌀 찰도너츠" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 price-badge text-white font-title text-base px-3 py-1 rounded-full shadow-md">
+                                1,000원
+                            </span>
+                            <span class="absolute top-3 right-3 bg-yellow-500 text-white font-bold text-xs px-2 py-0.5 rounded-full shadow">
+                                한입 볼 도넛
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex justify-between items-center mb-1.5">
+                                <h3 class="font-bold text-lg text-gray-900">동그란 찹쌀 찰도너츠</h3>
+                                <span class="text-xs text-amberGold bg-orange-50 font-bold px-2 py-0.5 rounded">1개</span>
+                            </div>
+                            <p class="text-gray-600 text-xs leading-relaxed mb-3">
+                                앙금 없이 순수 찹쌀의 극상 쫄깃함만 담은 한입에 쏙 동그란 찰도너츠.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5 pt-0">
+                        <button onclick="addToCalc('찹쌀 찰도너츠', 1000)" class="w-full bg-amberGold hover:bg-yellow-600 text-white font-bold py-2 rounded-xl transition-colors flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-plus mr-1.5"></i> 계산기에 담기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 4: 수제 고기만두 -->
+                <div class="menu-item mandoo bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 overflow-hidden bg-red-100">
+                            <img src="https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=800&q=80" alt="수제 고기만두" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 price-badge text-white font-title text-base px-3 py-1 rounded-full shadow-md">
+                                1,000원
+                            </span>
+                            <span class="absolute top-3 right-3 bg-brand text-white font-bold text-xs px-2 py-0.5 rounded-full shadow">
+                                ★ 강추
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex justify-between items-center mb-1.5">
+                                <h3 class="font-bold text-lg text-gray-900">수제 왕 고기만두</h3>
+                                <span class="text-xs text-brand bg-red-50 font-bold px-2 py-0.5 rounded">1개</span>
+                            </div>
+                            <p class="text-gray-600 text-xs leading-relaxed mb-3">
+                                국내산 돼지고기와 아삭 야채로 속을 꽉 채워 육즙이 촉촉하게 감도는 손만두.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5 pt-0">
+                        <button onclick="addToCalc('수제 왕 고기만두', 1000)" class="w-full bg-brand hover:bg-brandDark text-white font-bold py-2 rounded-xl transition-colors flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-plus mr-1.5"></i> 계산기에 담기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 5: 수제 김치만두 -->
+                <div class="menu-item mandoo bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 overflow-hidden bg-red-100">
+                            <img src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=800&q=80" alt="수제 김치만두" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 price-badge text-white font-title text-base px-3 py-1 rounded-full shadow-md">
+                                1,000원
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex justify-between items-center mb-1.5">
+                                <h3 class="font-bold text-lg text-gray-900">수제 매콤 김치만두</h3>
+                                <span class="text-xs text-brand bg-red-50 font-bold px-2 py-0.5 rounded">1개</span>
+                            </div>
+                            <p class="text-gray-600 text-xs leading-relaxed mb-3">
+                                칼칼하고 개운한 김치 양념과 고기가 잘 어우러진 깔끔 매콤한 수제 만두.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5 pt-0">
+                        <button onclick="addToCalc('수제 매콤 김치만두', 1000)" class="w-full bg-brand hover:bg-brandDark text-white font-bold py-2 rounded-xl transition-colors flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-plus mr-1.5"></i> 계산기에 담기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 6: 모듬 세트 (인기) -->
+                <div class="menu-item donut mandoo bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all border border-amber-200 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 overflow-hidden bg-yellow-100">
+                            <img src="https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=800&q=80" alt="실속 모듬 세트" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 bg-charcoal text-yellow-400 font-title text-base px-3 py-1 rounded-full shadow-md">
+                                10,000원
+                            </span>
+                            <span class="absolute top-3 right-3 bg-red-600 text-white font-bold text-xs px-2 py-0.5 rounded-full shadow">
+                                추천 모듬
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex justify-between items-center mb-1.5">
+                                <h3 class="font-bold text-lg text-gray-900">금손 10,000원 모듬팩</h3>
+                                <span class="text-xs text-gray-500 bg-gray-100 font-bold px-2 py-0.5 rounded">총 10개 구성</span>
+                            </div>
+                            <p class="text-gray-600 text-xs leading-relaxed mb-3">
+                                만두, 꽈배기, 동그란 찹쌀도너츠를 자유롭게 조합하여 10개를 푸짐하게 담아드립니다.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5 pt-0">
+                        <button onclick="addToCalc('실속 모듬 세트', 10000)" class="w-full bg-charcoal hover:bg-gray-800 text-white font-bold py-2 rounded-xl transition-colors flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-plus mr-1.5"></i> 계산기에 담기
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Order Calculator Section -->
+    <section id="calculator" class="py-16 bg-amberLight/60">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-orange-200">
+                <div class="text-center mb-6">
+                    <span class="bg-amberGold/20 text-amberGold font-bold text-xs px-3 py-1 rounded-full">Fast Order</span>
+                    <h2 class="font-title text-2xl sm:text-3xl text-gray-900 mt-2">포장 / 단체주문 간편 계산기</h2>
+                    <p class="text-gray-500 text-xs mt-1">수량을 조절하신 후 [문자로 예약 주문하기]를 누르시면 사장님께 바로 전달됩니다.</p>
+                </div>
+                <div class="bg-black/40 backdrop-blur-md p-3 rounded-2xl border border-white/20">
+                    <span class="block text-yellow-400 font-bold text-xl sm:text-2xl">1,000원</span>
+                    <span class="text-xs text-gray-300">부담 없는 가격</span>
+                </div>
+                <div class="bg-black/40 backdrop-blur-md p-3 rounded-2xl border border-white/20">
+                    <span class="block text-yellow-400 font-bold text-xl sm:text-2xl">수제</span>
+                    <span class="text-xs text-gray-300">매일 빚는 손만두</span>
+                </div>
+                <div class="bg-black/40 backdrop-blur-md p-3 rounded-2xl border border-white/20">
+                    <span class="block text-yellow-400 font-bold text-xl sm:text-2xl">당일생산</span>
+                    <span class="text-xs text-gray-300">갓 튀겨낸 바삭함</span>
+                </div>
+            </div>
+
+            <!-- Call to Actions -->
+            <div class="pt-6 flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#calculator" class="pulse-btn bg-amberGold hover:bg-yellow-600 text-white font-bold px-8 py-4 rounded-full text-lg shadow-xl transition-all flex items-center justify-center">
+                    <i class="fa-solid fa-calculator mr-2"></i> 간편 포장/단체 주문하기
+                </a>
+                <a href="#menu" class="bg-white/20 hover:bg-white/30 backdrop-blur-md text-white border border-white/40 font-bold px-8 py-4 rounded-full text-lg transition-all flex items-center justify-center">
+                    <i class="fa-solid fa-cookie-bite mr-2"></i> 메뉴 둘러보기
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <a href="#about" class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white/70 hover:text-white text-center animate-bounce">
+            <span class="text-xs block mb-1 font-light">아래로 스크롤</span>
+            <i class="fa-solid fa-chevron-down text-lg"></i>
+        </a>
+    </section>
+
+    <!-- Shop Value / Reasons Section -->
+    <section id="about" class="py-20 bg-amberLight/40">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-16">
+                <span class="text-brand font-bold text-sm tracking-widest uppercase">Secret of Taste</span>
+                <h2 class="font-title text-3xl sm:text-4xl text-charcoal mt-1">소담 수제만두가 끝까지 지키는 3가지 고집</h2>
+                <div class="w-16 h-1 bg-brand mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Point 1 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-orange-100 hover:shadow-xl transition-all duration-300 relative overflow-hidden group">
+                    <div class="w-16 h-16 bg-amberGold/10 rounded-2xl flex items-center justify-center text-amberGold text-3xl mb-6 group-hover:bg-amberGold group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-wheat-awn"></i>
+                    </div>
+                    <span class="text-xs font-bold text-brand bg-brand/10 px-3 py-1 rounded-full inline-block mb-2">찹쌀 불리고 빻는 집</span>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">100% 직접 불려 빻은 찹쌀</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        가게 공장에서 납품받는 시중 가루를 쓰면 편하지만 맛이 다릅니다. 저희는 매일 밤 최고급 국내산 찹쌀을 불리고, 아침마다 직접 빻아 겉은 바삭하고 속은 극상의 쫀득함을 만듭니다.
+                    </p>
+                </div>
+
+                <!-- Point 2 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-orange-100 hover:shadow-xl transition-all duration-300 relative overflow-hidden group">
+                    <div class="w-16 h-16 bg-brand/10 rounded-2xl flex items-center justify-center text-brand text-3xl mb-6 group-hover:bg-brand group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-hands-holding"></i>
+                    </div>
+                    <span class="text-xs font-bold text-amberGold bg-amberGold/10 px-3 py-1 rounded-full inline-block mb-2">정성 손만두</span>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">속이 꽉 찬 100% 수제 만두</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        기계로 찍어내는 만두와 비교를 거부합니다. 매일 준비하는 신선한 야채와 국내산 돼지고기로 만두소를 만들고, 하나하나 정성스럽게 피를 빚어 만듭니다.
+                    </p>
+                </div>
+
+                <!-- Point 3 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-orange-100 hover:shadow-xl transition-all duration-300 relative overflow-hidden group">
+                    <div class="w-16 h-16 bg-yellow-500/10 rounded-2xl flex items-center justify-center text-yellow-600 text-3xl mb-6 group-hover:bg-yellow-500 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-coins"></i>
+                    </div>
+                    <span class="text-xs font-bold text-green-700 bg-green-100 px-3 py-1 rounded-full inline-block mb-2">착한가격업소</span>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">개당 1,000원의 미친 가성비</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        고물가 시대에도 부담 없이 온 가족이 즐기실 수 있도록 가격을 낮췄습니다. 천원 한 장으로 느끼는 따뜻하고 푸짐한 옛날 시장의 정을 전해드립니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Storytelling Section -->
+    <section id="process" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-16">
+                <span class="text-amberGold font-bold text-sm tracking-widest uppercase">Everyday Morning Process</span>
+                <h2 class="font-title text-3xl sm:text-4xl text-charcoal mt-1">새벽 5시부터 시작되는 정성의 과정</h2>
+                <p class="text-gray-500 mt-2 text-sm">정직하게 정성을 다하기에 맛이 없을 수가 없습니다</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Step 1 -->
+                <div class="relative bg-amberLight/30 p-6 rounded-2xl border border-orange-100">
+                    <div class="w-10 h-10 bg-brand text-white font-bold rounded-full flex items-center justify-center mb-4 text-lg">1</div>
+                    <h4 class="font-bold text-lg text-gray-900 mb-2">찹쌀 불리기</h4>
+                    <p class="text-xs text-gray-600 leading-relaxed">품질 좋은 찹쌀만을 엄선하여 맑은 물에 정해진 시간 동안 촉촉하게 불립니다.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative bg-amberLight/30 p-6 rounded-2xl border border-orange-100">
+                    <div class="w-10 h-10 bg-amberGold text-white font-bold rounded-full flex items-center justify-center mb-4 text-lg">2</div>
+                    <h4 class="font-bold text-lg text-gray-900 mb-2">가게에서 직접 빻기</h4>
+                    <p class="text-xs text-gray-600 leading-relaxed">잘 불린 찹쌀을 가게 방아로 직접 고게 빻아 극상의 쫄깃함을 지닌 찹쌀가루를 만듭니다.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative bg-amberLight/30 p-6 rounded-2xl border border-orange-100">
+                    <div class="w-10 h-10 bg-yellow-600 text-white font-bold rounded-full flex items-center justify-center mb-4 text-lg">3</div>
+                    <h4 class="font-bold text-lg text-gray-900 mb-2">손만두 빚기 & 반죽</h4>
+                    <p class="text-xs text-gray-600 leading-relaxed">국내산 돼지고기와 신선한 야채로 꽉 찬 만두를 매일 손으로 정성스럽게 빚어냅니다.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative bg-amberLight/30 p-6 rounded-2xl border border-orange-100">
+                    <div class="w-10 h-10 bg-amber-800 text-white font-bold rounded-full flex items-center justify-center mb-4 text-lg">4</div>
+                    <h4 class="font-bold text-lg text-gray-900 mb-2">갓 튀겨내기 & 찌기</h4>
+                    <p class="text-xs text-gray-600 leading-relaxed">주문 즉시 따끈하게 스팀으로 찌고, 깨끗한 새 기름으로 노릇노릇 바삭하게 튀겨냅니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-brand font-bold text-sm tracking-widest uppercase">Delicious Menu</span>
+                    <h2 class="font-title text-3xl sm:text-4xl text-charcoal mt-1">대표 수제 메뉴 안내</h2>
+                </div>
+
+                <!-- Menu Tabs Filter -->
+                <div class="flex flex-wrap gap-2 mt-4 md:mt-0" id="menu-tabs">
+                    <button onclick="filterMenu('all')" class="tab-btn active bg-brand text-white font-medium px-5 py-2 rounded-full text-sm transition-all shadow-sm">전체보기</button>
+                    <button onclick="filterMenu('donut')" class="tab-btn bg-white hover:bg-gray-100 text-gray-700 font-medium px-5 py-2 rounded-full text-sm transition-all shadow-sm border border-gray-200">찹쌀도너츠 & 꽈배기</button>
+                    <button onclick="filterMenu('mandoo')" class="tab-btn bg-white hover:bg-gray-100 text-gray-700 font-medium px-5 py-2 rounded-full text-sm transition-all shadow-sm border border-gray-200">수제 만두</button>
+                </div>
+            </div>
+
+            <!-- Menu Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="menu-grid">
+
+                <!-- Item 1: 찹쌀 꽈배기 -->
+                <div class="menu-item donut bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-52 overflow-hidden bg-amber-100">
+                            <img src="https://images.unsplash.com/photo-1626094309830-abbb0c99da4a?auto=format&fit=crop&w=800&q=80" alt="찹쌀 꽈배기" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 price-badge text-white font-title text-lg px-3 py-1 rounded-full shadow-md">
+                                1,000원
+                            </span>
+                            <span class="absolute top-4 right-4 bg-yellow-400 text-charcoal font-bold text-xs px-2.5 py-1 rounded-full shadow">
+                                ★ 인기 1위
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-bold text-xl text-gray-900">수제 찹쌀 꽈배기</h3>
+                                <span class="text-xs text-amberGold bg-orange-50 font-bold px-2 py-1 rounded">1개</span>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                직접 빻은 찹쌀을 아끼지 않고 넣어 겉은 결대로 찢어지는 바삭함, 속은 쫄깃한 식감이 일품인 시그니처 꽈배기입니다.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <button onclick="addToCalc('찹쌀 꽈배기', 1000)" class="w-full bg-amberGold hover:bg-yellow-600 text-white font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-plus mr-2"></i> 주문목록에 담기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 2: 찹쌀 팥도너츠 -->
+                <div class="menu-item donut bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-52 overflow-hidden bg-amber-100">
+                            <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80" alt="찹쌀 팥도너츠" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 price-badge text-white font-title text-lg px-3 py-1 rounded-full shadow-md">
+                                1,000원
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-bold text-xl text-gray-900">찹쌀 팥도너츠</h3>
+                                <span class="text-xs text-amberGold bg-orange-50 font-bold px-2 py-1 rounded">1개</span>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                쫀득한 수제 찹쌀 피 속에 너무 달지 않고 고소한 팥앙금을 듬뿍 넣었습니다. 남녀노소 추억의 대표 간식!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <button onclick="addToCalc('찹쌀 팥도너츠', 1000)" class="w-full bg-amberGold hover:bg-yellow-600 text-white font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-plus mr-2"></i> 주문목록에 담기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 3: 찹쌀 치즈/볼 도너츠 -->
+                <div class="menu-item donut bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-52 overflow-hidden bg-amber-100">
+                            <img src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=800&q=80" alt="찹쌀 수제 도너츠" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 price-badge text-white font-title text-lg px-3 py-1 rounded-full shadow-md">
+                                1,000원
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-bold text-xl text-gray-900">찹쌀 찰도너츠 (동그라미)</h3>
+                                <span class="text-xs text-amberGold bg-orange-50 font-bold px-2 py-1 rounded">1개</span>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                한 입 베어 물면 찹쌀 특유의 풍미가 감도는 동글동글 찹쌀도너츠. 설탕 톡톡 뿌려 드시면 더욱 맛있습니다.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <button onclick="addToCalc('찹쌀 찰도너츠', 1000)" class="w-full bg-amberGold hover:bg-yellow-600 text-white font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-plus mr-2"></i> 주문목록에 담기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 4: 수제 고기만두 -->
+                <div class="menu-item mandoo bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-52 overflow-hidden bg-red-100">
+                            <img src="https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=800&q=80" alt="수제 고기만두" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 price-badge text-white font-title text-lg px-3 py-1 rounded-full shadow-md">
+                                1,000원
+                            </span>
+                            <span class="absolute top-4 right-4 bg-brand text-white font-bold text-xs px-2.5 py-1 rounded-full shadow">
+                                ★ 강추
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-bold text-xl text-gray-900">수제 왕 고기만두</h3>
+                                <span class="text-xs text-brand bg-red-50 font-bold px-2 py-1 rounded">1개</span>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                육즙이 사르르 흘러나오는 신선한 국내산 돼지고기와 신선한 아삭 야채로 속을 빈틈없이 채운 대표 수제만두!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <button onclick="addToCalc('수제 왕 고기만두', 1000)" class="w-full bg-brand hover:bg-brandDark text-white font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-plus mr-2"></i> 주문목록에 담기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 5: 수제 김치만두 -->
+                <div class="menu-item mandoo bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-52 overflow-hidden bg-red-100">
+                            <img src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=800&q=80" alt="수제 김치만두" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 price-badge text-white font-title text-lg px-3 py-1 rounded-full shadow-md">
+                                1,000원
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-bold text-xl text-gray-900">수제 매콤 김치만두</h3>
+                                <span class="text-xs text-brand bg-red-50 font-bold px-2 py-1 rounded">1개</span>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                칼칼하고 개운한 맛! 아삭아삭 씹히는 김치의 양념과 고소한 고기가 잘 어우러진 질리지 않는 대표 만두입니다.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <button onclick="addToCalc('수제 매콤 김치만두', 1000)" class="w-full bg-brand hover:bg-brandDark text-white font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-plus mr-2"></i> 주문목록에 담기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 6: 모듬 세트 (인기) -->
+                <div class="menu-item donut mandoo bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-amber-200 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-52 overflow-hidden bg-yellow-100">
+                            <img src="https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=800&q=80" alt="실속 모듬 세트" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 bg-charcoal text-yellow-400 font-title text-lg px-3 py-1 rounded-full shadow-md">
+                                10,000원
+                            </span>
+                            <span class="absolute top-4 right-4 bg-red-600 text-white font-bold text-xs px-2.5 py-1 rounded-full shadow">
+                                추천 선물세트
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-bold text-xl text-gray-900">소담 10,000원 실속 모듬팩</h3>
+                                <span class="text-xs text-gray-500 bg-gray-100 font-bold px-2 py-1 rounded">10개 선택</span>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                만두, 꽈배기, 팥도너츠를 자유롭게 조합하여 총 10개를 푸짐하게 담아드립니다. 가족 간식 및 사무실 선물로 인기 최고!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <button onclick="addToCalc('실속 모듬 세트', 10000)" class="w-full bg-charcoal hover:bg-gray-800 text-white font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-plus mr-2"></i> 주문목록에 담기
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Order Calculator Section -->
+    <section id="calculator" class="py-20 bg-amberLight/60">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-orange-200">
+                <div class="text-center mb-8">
+                    <span class="bg-amberGold/20 text-amberGold font-bold text-xs px-3 py-1 rounded-full">Easy Pre-order</span>
+                    <h2 class="font-title text-2xl sm:text-3xl text-gray-900 mt-2">간편 포장 / 단체 주문 미리 계산기</h2>
+                    <p class="text-gray-500 text-sm mt-1">원하시는 메뉴와 수량을 클릭하시면 금액이 계산되고, 바로 문자로 주문하실 수 있습니다.</p>
+                </div>
+
+                <!-- Calculator Items Selector Grid -->
+                <div class="space-y-4 mb-8" id="calc-list">
+                    <!-- Item Row: 꽈배기 -->
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-200 gap-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-amberGold/20 text-amberGold rounded-xl flex items-center justify-center font-bold text-lg">🥖</div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 text-base">수제 찹쌀 꽈배기</h4>
+                                <span class="text-xs text-gray-500">개당 1,000원</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between sm:justify-end gap-4">
+                            <div class="flex items-center border border-gray-300 rounded-lg bg-white overflow-hidden">
+                                <button onclick="updateQty('꽈배기', -1)" class="w-9 h-9 flex items-center justify-center text-gray-600 hover:bg-gray-100 font-bold">-</button>
+                                <span id="qty-꽈배기" class="w-12 text-center font-bold text-gray-800">0</span>
+                                <button onclick="updateQty('꽈배기', 1)" class="w-9 h-9 flex items-center justify-center text-gray-600 hover:bg-gray-100 font-bold">+</button>
+                            </div>
+                            <span id="price-꽈배기" class="font-bold text-gray-900 w-20 text-right">0 원</span>
+                        </div>
+                    </div>
+
+                    <!-- Item Row: 팥도너츠 -->
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-200 gap-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-amberGold/20 text-amberGold rounded-xl flex items-center justify-center font-bold text-lg">🍩</div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 text-base">찹쌀 팥도너츠</h4>
+                                <span class="text-xs text-gray-500">개당 1,000원</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between sm:justify-end gap-4">
+                            <div class="flex items-center border border-gray-300 rounded-lg bg-white overflow-hidden">
+                                <button onclick="updateQty('팥도너츠', -1)" class="w-9 h-9 flex items-center justify-center text-gray-600 hover:bg-gray-100 font-bold">-</button>
+                                <span id="qty-팥도너츠" class="w-12 text-center font-bold text-gray-800">0</span>
+                                <button onclick="updateQty('팥도너츠', 1)" class="w-9 h-9 flex items-center justify-center text-gray-600 hover:bg-gray-100 font-bold">+</button>
+                            </div>
+                            <span id="price-팥도너츠" class="font-bold text-gray-900 w-20 text-right">0 원</span>
+                        </div>
+                    </div>
+
+                    <!-- Item Row: 찰도너츠 -->
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-200 gap-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-amberGold/20 text-amberGold rounded-xl flex items-center justify-center font-bold text-lg">🟡</div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 text-base">찹쌀 찰도너츠 (동그라미)</h4>
+                                <span class="text-xs text-gray-500">개당 1,000원</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between sm:justify-end gap-4">
+                            <div class="flex items-center border border-gray-300 rounded-lg bg-white overflow-hidden">
+                                <button onclick="updateQty('찰도너츠', -1)" class="w-9 h-9 flex items-center justify-center text-gray-600 hover:bg-gray-100 font-bold">-</button>
+                                <span id="qty-찰도너츠" class="w-12 text-center font-bold text-gray-800">0</span>
+                                <button onclick="updateQty('찰도너츠', 1)" class="w-9 h-9 flex items-center justify-center text-gray-600 hover:bg-gray-100 font-bold">+</button>
+                            </div>
+                            <span id="price-찰도너츠" class="font-bold text-gray-900 w-20 text-right">0 원</span>
+                        </div>
+                    </div>
+
+                    <!-- Item Row: 고기만두 -->
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-200 gap-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-brand/20 text-brand rounded-xl flex items-center justify-center font-bold text-lg">🥟</div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 text-base">수제 왕 고기만두</h4>
+                                <span class="text-xs text-gray-500">개당 1,000원</span>
+                            </div>
+                <!-- Location & Info -->
+                <div class="space-y-6">
+                    <div>
+                        <span class="bg-brand text-white font-bold text-xs px-3 py-1 rounded-full uppercase">Visit Us</span>
+                        <h2 class="font-title text-3xl text-white mt-2">금손 오시는 길</h2>
+                        <p class="text-gray-400 text-xs mt-1">갓 튀겨낸 따끈한 동그란 찹쌀도너츠와 수제만두를 맛보세요!</p>
+                    </div>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-9 h-9 bg-brand/30 text-amberGold rounded-xl flex items-center justify-center shrink-0 text-lg">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-200 text-sm">가게 위치</h4>
+                                <p class="text-gray-400 text-xs mt-0.5">서울특별시 ○○구 전통시장로 123 (금손 수제만두 & 찹쌀도너츠)</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-9 h-9 bg-brand/30 text-amberGold rounded-xl flex items-center justify-center shrink-0 text-lg">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-200 text-sm">영업 시간</h4>
+                                <p class="text-gray-400 text-xs mt-0.5">매일 08:00 ~ 20:00 (재료 소진 시 마감)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Total Amount Summary Card -->
+                <div class="bg-charcoal text-white p-6 rounded-2xl mb-6">
+                    <div class="flex justify-between items-center border-b border-gray-700 pb-4 mb-4">
+                        <span class="text-gray-300 text-sm">선택한 총 개수</span>
+                        <span id="total-count" class="font-bold text-yellow-400 text-lg">0 개</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-lg font-bold">총 주문 예정 금액</span>
+                        <span id="total-price" class="font-title text-3xl text-amberGold">0 원</span>
+                    </div>
+                </div>
+
+                <!-- Actions Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button onclick="resetCalc()" class="sm:w-1/3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-3.5 rounded-xl transition-colors">
+                        <i class="fa-solid fa-rotate-left mr-1"></i> 초기화
+                    </button>
+                    <button onclick="sendOrderSMS()" class="sm:w-2/3 bg-brand hover:bg-brandDark text-white font-bold py-3.5 rounded-xl transition-colors flex items-center justify-center shadow-md">
+                        <i class="fa-solid fa-paper-plane mr-2"></i> 문자로 미리 예약/포장 주문하기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-16">
+                <span class="text-amberGold font-bold text-sm tracking-widest uppercase">Customer Reviews</span>
+                <h2 class="font-title text-3xl sm:text-4xl text-charcoal mt-1">단골손님들의 솔직 칭찬 후기</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="reviews-container">
+                <!-- Review 1 -->
+                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 shadow-sm relative">
+                    <div class="flex text-yellow-400 mb-3 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 text-sm leading-relaxed mb-4">
+                        "찹쌀을 직접 불리고 빻아서 만든다고 쓰여있어서 사 먹어봤는데, 확실히 마트나 시중 도너츠랑 차원이 달라요! 겉은 튀김옷이 바삭하고 속은 모찌처럼 쫀득쫀득해서 식어도 맛있습니다."
+                    </p>
+                    <div class="flex justify-between items-center text-xs text-gray-500 pt-3 border-t border-gray-200">
+                        <span class="font-bold text-gray-800">김*희 님 (동네 단골)</span>
+                        <span>2026.09.28</span>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 shadow-sm relative">
+                    <div class="flex text-yellow-400 mb-3 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 text-sm leading-relaxed mb-4">
+                        "요즘 물가에 만두 한 개에 천 원이라니 말도 안 됩니다. 속도 꽉 차 있고 돼지고기 냄새 하나 안 납니다. 매일 퇴근길에 꽈배기 3개, 고기만두 3개씩 사서 가족들이랑 야식으로 먹네요."
+                    </p>
+                    <div class="flex justify-between items-center text-xs text-gray-500 pt-3 border-t border-gray-200">
+                        <span class="font-bold text-gray-800">박*훈 님 (직장인)</span>
+                        <span>2026.09.25</span>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 shadow-sm relative">
+                    <div class="flex text-yellow-400 mb-3 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 text-sm leading-relaxed mb-4">
+                        "어린이집 간식으로 꽈배기 50개 단체 주문했는데 선생님들도 아이들도 너무 맛있다며 난리였습니다! 기름도 깨끗해서 느낍한 맛이 전혀 없어서 안심하고 먹입니다."
+                    </p>
+                    <div class="flex justify-between items-center text-xs text-gray-500 pt-3 border-t border-gray-200">
+                        <span class="font-bold text-gray-800">이*영 님 (학부모)</span>
+                        <span>2026.09.20</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review Input Modal Opener -->
+            <div class="mt-10 text-center">
+                <button onclick="openReviewModal()" class="inline-flex items-center text-brand hover:text-brandDark font-bold text-sm underline gap-1">
+                    <i class="fa-regular fa-comment-dots"></i> 한 줄 후기 직접 작성하기
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Business Info Section -->
+    <section id="location" class="py-20 bg-gray-900 text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Info Left -->
+                <div class="space-y-6">
+                    <div>
+                        <span class="bg-brand text-white font-bold text-xs px-3 py-1 rounded-full uppercase">Visit Us</span>
+                        <h2 class="font-title text-3xl sm:text-4xl text-white mt-2">찾아오시는 길 & 영업 안내</h2>
+                        <p class="text-gray-400 text-sm mt-2">갓 튀겨낸 따끈한 찹쌀도너츠와 만두를 만나보세요!</p>
+                    </div>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 bg-brand/30 text-amberGold rounded-xl flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-location-dot text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-200">가게 위치</h4>
+                                <p class="text-gray-400 text-sm mt-0.5">서울특별시 ○○구 전통시장로 123 (소담 손만두 & 찹쌀꽈배기)</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 bg-brand/30 text-amberGold rounded-xl flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-clock text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-200">영업 시간</h4>
+                                <p class="text-gray-400 text-sm mt-0.5">매일 08:00 ~ 20:00 (재료 소진 시 조기 마감)</p>
+                                <span class="text-xs text-yellow-400 font-medium">※ 매일 아침 8시 첫 꽈배기/만두 나옵니다.</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 bg-brand/30 text-amberGold rounded-xl flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-phone text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-200">전화 및 단체예약 문의</h4>
+                                <p class="text-gray-400 text-sm mt-0.5">010-0000-0000 / 02-000-0000</p>
+                                <p class="text-xs text-gray-500 mt-0.5">학교, 학원, 교회, 어린이집 단체 간식 주문 환영!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 flex flex-wrap gap-3">
+                        <a href="tel:010-0000-0000" class="bg-amberGold hover:bg-yellow-600 text-white font-bold px-6 py-3 rounded-xl transition-colors flex items-center text-sm">
+                            <i class="fa-solid fa-phone mr-2"></i> 바로 전화 연결
+                        </a>
+                        <button onclick="copyAddress()" class="bg-gray-800 hover:bg-gray-700 text-gray-200 font-bold px-6 py-3 rounded-xl transition-colors flex items-center text-sm border border-gray-700">
+                            <i class="fa-solid fa-copy mr-2"></i> 주소 복사하기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Map Right (Interactive Placeholder Visual) -->
+                <div class="bg-gray-800 rounded-3xl p-4 border border-gray-700 relative overflow-hidden h-80 sm:h-96 flex flex-col justify-between">
+                    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=800&q=80')] bg-cover bg-center opacity-30"></div>
+                    
+                    <div class="relative z-10 bg-gray-900/80 backdrop-blur-md p-3 rounded-xl border border-gray-700 inline-block text-xs text-gray-300">
+                        <i class="fa-solid fa-map-pin text-brand mr-1"></i> 전통시장 입구 첫 번째 집
+                    </div>
+
+                    <div class="relative z-10 text-center my-auto">
+                        <div class="w-16 h-16 bg-brand text-white rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg animate-bounce">
+                            <i class="fa-solid fa-store text-2xl"></i>
+                        </div>
+                        <h3 class="font-title text-2xl text-white">소담 수제만두 & 찹쌀꽈배기</h3>
+                        <p class="text-xs text-yellow-400 mt-1">지하철역 2번 출구에서 도보 3분 거리</p>
+                    </div>
+
+                    <div class="relative z-10 text-center">
+                        <span class="text-xs text-gray-400">카카오맵/네이버지도에서 '소담수제만두'를 검색하세요</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-gray-500 text-xs py-6 border-t border-gray-900 text-center">
+        <p class="text-gray-400 font-bold">금손 수제만두 & 찹쌀도너츠 전문점</p>
+        <p class="text-gray-600 mt-1">&copy; 2026 금손 수제만두. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // --- State Management ---
+        const prices = {
+            '꽈배기': 1000,
+            '팥도너츠': 1000,
+            '찰도너츠': 1000,
+            '고기만두': 1000,
+            '김치만두': 1000
+        };
+
+        const quantities = {
+            '꽈배기': 0,
+            '팥도너츠': 0,
+            '찰도너츠': 0,
+            '고기만두': 0,
+            '김치만두': 0
+        };
+
+        // --- Mobile Menu Toggle ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // --- Menu Filter Tabs ---
+        function filterMenu(category) {
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-brand', 'text-white', 'active');
+                btn.classList.add('bg-white', 'text-gray-700');
+            });
+
+            event.target.classList.remove('bg-white', 'text-gray-700');
+            event.target.classList.add('bg-brand', 'text-white', 'active');
+
+            const items = document.querySelectorAll('.menu-item');
+            items.forEach(item => {
+                if (category === 'all') {
+                    item.style.display = 'flex';
+                } else if (item.classList.contains(category)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // --- Order Calculator Logic ---
+        function updateQty(itemKey, delta) {
+            quantities[itemKey] = Math.max(0, quantities[itemKey] + delta);
+            
+            // Update UI elements
+            document.getElementById(`qty-${itemKey}`).textContent = quantities[itemKey];
+            const itemTotal = quantities[itemKey] * prices[itemKey];
+            document.getElementById(`price-${itemKey}`).textContent = itemTotal.toLocaleString() + ' 원';
+
+            recalculateTotal();
+        }
+
+        function addToCalc(itemName, price) {
+            let key = null;
+            if (itemName.includes('꽈배기')) key = '꽈배기';
+            else if (itemName.includes('팥도너츠')) key = '팥도너츠';
+            else if (itemName.includes('찰도너츠')) key = '찰도너츠';
+            else if (itemName.includes('고기만두')) key = '고기만두';
+            else if (itemName.includes('김치만두')) key = '김치만두';
+
+            if (key) {
+                updateQty(key, 1);
+                showToast(`'${itemName}'가 계산기에 추가되었습니다.`, 'success');
+            } else if (itemName.includes('모듬')) {
+                updateQty('꽈배기', 3);
+                updateQty('팥도너츠', 3);
+                updateQty('고기만두', 2);
+                updateQty('김치만두', 2);
+                showToast('모듬 세트 수량(총 10개)이 계산기에 적용되었습니다!', 'success');
+            }
+
+            // Scroll gently to calculator
+            document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function recalculateTotal() {
+            let totalCount = 0;
+            let totalPrice = 0;
+
+            for (const key in quantities) {
+                totalCount += quantities[key];
+                totalPrice += quantities[key] * prices[key];
+            }
+
+            document.getElementById('total-count').textContent = totalCount + ' 개';
+            document.getElementById('total-price').textContent = totalPrice.toLocaleString() + ' 원';
+        }
+
+        function resetCalc() {
+            for (const key in quantities) {
+                quantities[key] = 0;
+                document.getElementById(`qty-${key}`).textContent = '0';
+                document.getElementById(`price-${key}`).textContent = '0 원';
+            }
+            recalculateTotal();
+            showToast('계산기가 초기화되었습니다.');
+        }
+
+        function sendOrderSMS() {
+            let totalCount = 0;
+            let orderSummary = [];
+
+            for (const key in quantities) {
+                if (quantities[key] > 0) {
+                    totalCount += quantities[key];
+                    orderSummary.push(`${key} ${quantities[key]}개`);
+                }
+            }
+
+            if (totalCount === 0) {
+                showToast('메뉴 수량을 1개 이상 선택해 주세요!', 'warning');
+                return;
+            }
+
+            let totalPrice = Object.keys(quantities).reduce((acc, k) => acc + quantities[k] * prices[k], 0);
+            const msgBody = `[금손수제만두 예약주문]\n- 주문목록: ${orderSummary.join(', ')}\n- 총 수량: ${totalCount}개\n- 총 금액: ${totalPrice.toLocaleString()}원\n\n픽업 예정 시간을 답장해 주세요!`;
+
+            window.location.href = `sms:01000000000?body=${encodeURIComponent(msgBody)}`;
+            showToast('문자 앱으로 주문 내용이 연결되었습니다!', 'success');
+        }
+
+        // --- Toast Messenger Utility ---
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastMessage.textContent = message;
+
+            if (type === 'success') {
+                toastIcon.className = 'fa-solid fa-circle-check text-yellow-400 text-xl';
+            } else if (type === 'warning') {
+                toastIcon.className = 'fa-solid fa-triangle-exclamation text-amberGold text-xl';
+            } else {
+                toastIcon.className = 'fa-solid fa-info-circle text-blue-400 text-xl';
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // --- Review Modal Handling ---
+        function openReviewModal() {
+            document.getElementById('review-modal').classList.remove('hidden');
+        }
+
+        function closeReviewModal() {
+            document.getElementById('review-modal').classList.add('hidden');
+        }
+
+        function submitReview() {
+            const name = document.getElementById('review-name').value.trim() || '익명 단골';
+            const text = document.getElementById('review-text').value.trim();
+
+            if (!text) {
+                showToast('후기 내용을 입력해 주세요!', 'warning');
+                return;
+            }
+
+            const reviewsContainer = document.getElementById('reviews-container');
+            const today = new Date().toISOString().split('T')[0].replace(/-/g, '.');
+
+            const newReviewHtml = `
+                <div class="bg-amberLight/40 p-6 rounded-2xl border border-amber-200 shadow-sm relative">
+                    <div class="flex text-yellow-400 mb-3 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 text-sm leading-relaxed mb-4">"${text}"</p>
+                    <div class="flex justify-between items-center text-xs text-gray-500 pt-3 border-t border-amber-200">
+                        <span class="font-bold text-gray-800">${name} 님</span>
+                        <span>${today}</span>
+                    </div>
+                </div>
+            `;
+
+            reviewsContainer.insertAdjacentHTML('afterbegin', newReviewHtml);
+            closeReviewModal();
+            document.getElementById('review-name').value = '';
+            document.getElementById('review-text').value = '';
+            showToast('소중한 후기가 등록되었습니다. 감사합니다!', 'success');
+        }
+
+        // --- Copy Address Helper ---
+        function copyAddress() {
+            const addressText = "서울특별시 ○○구 전통시장로 123 소담 수제만두 & 찹쌀꽈배기";
+            const tempInput = document.createElement('textarea');
+            tempInput.value = addressText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast('가게 주소가 클립보드에 복사되었습니다!');
+        }
+    </script>
+</body>
+</html>
